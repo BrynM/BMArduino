@@ -1,5 +1,6 @@
 # Sublime Text
-*.sublime_project
+*.sublime-project
+*.sublime-workspace
 
 # Compiled Object files
 *.slo
