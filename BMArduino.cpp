@@ -2,9 +2,48 @@
 #include "BMArduino.h"
 #include "BMBoards.h"
 
-BMCore::BMCore() {};
+BMCore::BMCore() {
+  strcpy(bmFuncAnnouncePrefix, BM_FUNC_ANNOUNCE_PREFIX);
+  strcpy(bmFuncAnnounceSuffix, BM_FUNC_ANNOUNCE_SUFFIX);
+  bmSerialRate = BM_SERIAL_RATE;
+  bmSerialTimeout = BM_SERIAL_TIMEOUT;
+  bmStartedSerial = false;
+};
 
-char bmInstanceName[2] = "BM";
+char bmInstanceName[BM_CLASS_NAME_SIZE] = "BM";
+
+void BMCore::announce() {
+  #ifdef BM_DEBUGGING
+    Serial.print(bmFuncAnnouncePrefix);
+    Serial.print(millis());
+    Serial.print(bmFuncAnnounceSuffix);
+  #endif
+}
+
+void BMCore::announce(char *funcName) {
+  #ifdef BM_DEBUGGING
+    Serial.print(bmFuncAnnouncePrefix);
+    Serial.print(millis());
+    Serial.print("ms # ");
+    Serial.print(funcName);
+    Serial.print("()");
+    Serial.print(bmFuncAnnounceSuffix);
+  #endif
+}
+
+void BMCore::announce(char *className, char *funcName) {
+  #ifdef BM_DEBUGGING
+    Serial.print(bmFuncAnnouncePrefix);
+    Serial.print(millis());
+    Serial.print("ms # ");
+    Serial.print(className);
+    Serial.print("::");
+    Serial.print(funcName);
+    Serial.print("()");
+    Serial.print(bmFuncAnnounceSuffix);
+  #endif
+}
+
 
 void BMCore::info() {
   #ifdef BM_DEBUGGING
@@ -28,51 +67,18 @@ void BMCore::info() {
   #endif
 }
 
-void BMCore::announce() {
-  #ifdef BM_DEBUGGING
-    Serial.print(FUNC_ANNOUNCE_PREFIX);
-    Serial.print(millis());
-    Serial.print(FUNC_ANNOUNCE_SUFFIX);
-  #endif
-}
-
-void BMCore::announce(char *funcName) {
-  #ifdef BM_DEBUGGING
-    Serial.print(FUNC_ANNOUNCE_PREFIX);
-    Serial.print(millis());
-    Serial.print("ms # ");
-    Serial.print(funcName);
-    Serial.print("()");
-    Serial.print(FUNC_ANNOUNCE_SUFFIX);
-  #endif
-}
-
-void BMCore::announce(char *className, char *funcName) {
-  #ifdef BM_DEBUGGING
-    Serial.print(FUNC_ANNOUNCE_PREFIX);
-    Serial.print(millis());
-    Serial.print("ms # ");
-    Serial.print(className);
-    Serial.print("::");
-    Serial.print(funcName);
-    Serial.print("()");
-    Serial.print(FUNC_ANNOUNCE_SUFFIX);
-  #endif
-}
-
-
 bool BMCore::pin_activate(int pin, int ioMode) {
   int lastIter = 0;
 
   for(int i = 0; i < BM_MAX_PINS; i++) {
-    if(bm_used_pins[i] == '\0') {
+    if(bmUsedPins[i] == '\0') {
       lastIter = i;
       break;
     }
 
-    if(bm_used_pins[i] == pin) {
+    if(bmUsedPins[i] == pin) {
       #ifdef BM_DEBUGGING
-        CLASS_MSG(bmInstanceName, __func__);
+        CLASS_MSG(bmInstanceName);
         Serial.print("Failed pin ");
         Serial.print(pin);
         Serial.print(" slot ");
@@ -83,11 +89,11 @@ bool BMCore::pin_activate(int pin, int ioMode) {
     }
   }
 
-  bm_used_pins[lastIter] = pin;
+  bmUsedPins[lastIter] = pin;
   pinMode(pin, ioMode);
 
   #ifdef BM_DEBUGGING
-    CLASS_MSG(bmInstanceName, __func__);
+    CLASS_MSG(bmInstanceName);
     Serial.print("Reserved pin ");
     Serial.print(pin);
     Serial.print(" slot ");
@@ -116,19 +122,27 @@ void BMCore::wait_for_serial() {
   int startMilliS = millis();
 
   while (!Serial && !serialBreak) {
-    if((millis() - startMilliS) >= BM_SERIAL_TIMEOUT) {
+    if((millis() - startMilliS) >= bmSerialTimeout) {
       serialBreak = 1;
     }
   }
 
   #ifdef BM_DEBUGGING
     Serial.println();
-    CLASS_MSG(bmInstanceName, __func__);
+    CLASS_MSG(bmInstanceName);
     Serial.print("Hardware Serial ");
     if(serialBreak) {
-      Serial.println(" timed out!");
+      Serial.print("timed out after ");
+      Serial.print(bmSerialTimeout);
+      Serial.println("!");
     } else {
-      Serial.println(" begun.");
+      if(bmStartedSerial) {
+        Serial.print("begun at ");
+        Serial.print(bmSerialRate);
+        Serial.println(" baud.");
+      } else {
+        Serial.print("begun.");
+      }
     }
   #endif
 
@@ -136,7 +150,8 @@ void BMCore::wait_for_serial() {
 }
 void BMCore::wait_for_serial(bool startSerial) {
   if(startSerial) {
-    Serial.begin(BM_SERIAL_RATE);
+    Serial.begin(bmSerialRate);
+    bmStartedSerial = true;
   }
 
   return wait_for_serial();

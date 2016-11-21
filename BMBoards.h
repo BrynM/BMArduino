@@ -170,7 +170,7 @@
   #elif defined (__AVR_ATmega3250PA__)
     #define __BM_BOARD__ "ATmega3250PA"
   #elif defined (__AVR_ATmega328P__)
-    // 28 pins minus power
+    // 28 pins minus power for raw chip
     #define BM_MAX_PINS 23
     #define __BM_BOARD__ "ATmega328P"
   #elif defined (__AVR_ATmega328__)
