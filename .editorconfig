@@ -1,0 +1,15 @@
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# 2 space indentation
+[{*.c,*.cpp,*.h]
+indent_style = space
+indent_size = 2
+
+# Tab indentation (no size specified)
+[*.md]
+indent_style = tab
