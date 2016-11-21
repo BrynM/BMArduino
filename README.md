@@ -80,6 +80,20 @@ void loop() {
 
 ```
 
+Compiling the above with debugging enabled produces the following sketch size.
+
+```
+Sketch uses 2,298 bytes (7%) of program storage space. Maximum is 32,256 bytes.
+Global variables use 485 bytes (23%) of dynamic memory, leaving 1,563 bytes for local variables. Maximum is 2,048 bytes.
+```
+
+With debugging turned off, that entire large string is excluded from the final sketch size.
+
+```
+Sketch uses 1,688 bytes (5%) of program storage space. Maximum is 32,256 bytes.
+Global variables use 273 bytes (13%) of dynamic memory, leaving 1,775 bytes for local variables. Maximum is 2,048 bytes.
+```
+ 
 ### `FUNC_MSG()`
 
 I assume that you don't plop all of your code into `setup()` and `loop()` (and if you do you are a barbarian). If you noticed the fancy formatting for the message when using "the BM serial implementation" (`BM.wait_for_serial()`), that style of output can be had for your debug messages as well. Two variations of `BM.announce()` are encapsulated in preprocessor macros. The first is `FUNC_MSG()`. This will open a line of serial output stating the `millis()` timestamp, a separator, the name of your function, and then a closing separator. 
