@@ -24,7 +24,7 @@ My small utility Arduino library.
 
 This will create an object called `BM` containing some utility methods and basic debug output functionality. It also features some board identification functionality (by chip) available in the constant `__BM_BOARD__`.
 
-Released under [GPLv3](/BrynM/BMArduino/blob/master/LICENSE) so you can have your fun too.
+Released under [GPLv3](/LICENSE) so you can have your fun too.
 
 ## Installation
 
@@ -37,7 +37,7 @@ When the library is included, Arduino IDE inserts an include line for every head
 ## Controlling Debug Mode
 Lots of these functions use `Serial` to print debug messages and there are two handy macros defined so you can add similar debug messages to your code.
 
-By default debugging is turned on. If you should turn it off, the compiled size of your sketch will be smaller because the strings used for debug output won't be defined. To change it, set the preprocessor directive `BM_DEBUG_LEVEL` to an integer value in [`BMArduino.h`](/BrynM/BMArduino/blob/master/BMArduino.h). Any value greater than `0` will enable debug mode and `0` will disable it.
+By default debugging is turned on. If you should turn it off, the compiled size of your sketch will be smaller because the strings used for debug output won't be defined. To change it, set the preprocessor directive `BM_DEBUG_LEVEL` to an integer value in [`BMArduino.h`](/BMArduino.h). Any value greater than `0` will enable debug mode and `0` will disable it.
 
 Debugging is turned on in the following code.
 ```cpp
@@ -58,7 +58,7 @@ On the serial console you should see the following.
 @0ms # BM::wait_for_serial() # Hardware Serial begun at 9600 baud.
 ```
 
-Now let's turn debug mode off with `#define BM_DEBUG_LEVEL 0` in [`BMArduino.h`](/BrynM/BMArduino/blob/master/BMArduino.h).
+Now let's turn debug mode off with `#define BM_DEBUG_LEVEL 0` in [`BMArduino.h`](/BMArduino.h).
 ```cpp
 #include <BMArduino.h>
 
@@ -311,7 +311,7 @@ The above code will produce something like the following output.
 
 The next two variants are mainly used by our debug macros as described in [Using Debug Mode][#using-debug-mode]. Being so, the preferred usage should be via those macros.
 
-Various preprocessor definitions control the output of these methods. You can find and adjust them in [`BMArduino.h`](/BrynM/BMArduino/blob/master/BMArduino.h).
+Various preprocessor definitions control the output of these methods. You can find and adjust them in [`BMArduino.h`](/BMArduino.h).
 
 ## `info()`
 
@@ -349,7 +349,7 @@ Example output is as follows.
 ########################################
 ```
 
-The chip is identified in [`BMBoards.h`](/BrynM/BMArduino/blob/master/BMBoards.h) if possible. the portion that reads "23p avail" refers to the number of pins allocated for [`pin_activate()`](#pin_activate) to use. If I know the amount for a given chip, I'll be putting it in. Otherwise the amount is `BM_MAX_PINS` (`96`).
+The chip is identified in [`BMBoards.h`](/BMBoards.h) if possible. the portion that reads "23p avail" refers to the number of pins allocated for [`pin_activate()`](#pin_activate) to use. If I know the amount for a given chip, I'll be putting it in. Otherwise the amount is `BM_MAX_PINS` (`96`).
 
 If debug mode is disabled, this method will produce no output.
 
@@ -454,7 +454,7 @@ The above code will produce something like the following output.
 
 Evaluates whether or not a given integer value is near another integer value with an optional amount of integer variance. Handy for pins that read with a little bit of variance. I needed it for some buttons with some bounce that was produced at different, but predictable, variances.
 
-The default amount of variance is `10` and can be changed with `BM_VALUE_NEAR_DEFAULT_VARIANCE` in [`BMArduino.h`](/BrynM/BMArduino/blob/master/BMArduino.h) though it's often more convenient to call the variant with all three arguments.
+The default amount of variance is `10` and can be changed with `BM_VALUE_NEAR_DEFAULT_VARIANCE` in [`BMArduino.h`](/BMArduino.h) though it's often more convenient to call the variant with all three arguments.
 
 Definitions:
 ```
