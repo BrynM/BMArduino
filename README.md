@@ -347,7 +347,7 @@ Example output is as follows.
 ########################################
 ```
 
-The chip is identified in `BMBoards.h` if possible. the portion that reads "23p avail" refers to the number of pins allocated for [`pin_activate()`](#pin_activate) to use. If I know the amount for a given chip, I'll be putting it in. Otherwise the amount is `BM_MAX_PINS` (`96`).
+The chip is identified in [`BMBoards.h`](/BrynM/BMArduino/blob/master/BMBoards.h) if possible. the portion that reads "23p avail" refers to the number of pins allocated for [`pin_activate()`](#pin_activate) to use. If I know the amount for a given chip, I'll be putting it in. Otherwise the amount is `BM_MAX_PINS` (`96`).
 
 If debug mode is disabled, this method will produce no output.
 
