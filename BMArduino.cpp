@@ -116,7 +116,7 @@ bool BMCore::value_is_between(int value, int lowerBound, int upperBound) {
 }
 
 bool BMCore::value_is_near(int val, int near) {
-  return value_is_near(val, near, 10);
+  return value_is_near(val, near, BM_VALUE_NEAR_DEFAULT_VARIANCE);
 }
 bool BMCore::value_is_near(int val, int near, int variance) {
   return (val >= (near - variance) && val <= (near+variance));

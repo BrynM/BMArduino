@@ -24,6 +24,8 @@
 
   //#define BM_SERIAL_TIMEOUT 3500
 
+  //#define BM_VALUE_NEAR_DEFAULT_VARIANCE 10
+
 #endif
 
 /*
@@ -74,6 +76,10 @@
 
   #ifndef BM_SERIAL_TIMEOUT
     #define BM_SERIAL_TIMEOUT 3500
+  #endif
+
+  #ifndef BM_VALUE_NEAR_DEFAULT_VARIANCE
+    #define BM_VALUE_NEAR_DEFAULT_VARIANCE 10
   #endif
 
   class BMCore {
