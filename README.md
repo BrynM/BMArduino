@@ -51,11 +51,11 @@ void loop() {
 }
 ```
 
-With debugging turned off, there is no serial console output from calling [`BM.wait_for_serial()`](#`BM.wait_for_serial%28%29`).
+With debugging turned off, there is no serial console output from calling [`BM.wait_for_serial()`](#wait_for_serial).
 
 ### Debug Level 2
 
-There is a secondary level of debug mode if `BM_DEBUG_LEVEL` is set to `2` or greater. If that is so, an extra preprocessor directive is defined called `BM_NOISY_DEBUGGING`. This can be used interchangeably with `BM_DEBUGGING` as described in [Using Debug Mode](#Using Debug Mode)->[`BM_DEBUGGING` or `BM_NOISY_DEBUGGING`](#`BM_DEBUGGING` or `BM_NOISY_DEBUGGING`).
+There is a secondary level of debug mode if `BM_DEBUG_LEVEL` is set to `2` or greater. If that is so, an extra preprocessor directive is defined called `BM_NOISY_DEBUGGING`. This can be used interchangeably with `BM_DEBUGGING` as described in [Using Debug Mode](#using-debug-mode)->[`BM_DEBUGGING` or `BM_NOISY_DEBUGGING`](#bm_debugging-or-bm_noisy_debugging).
 
 ## Using Debug Mode
 
@@ -275,7 +275,7 @@ The above code will produce something like the following output.
 @6ms # Sending some serial message.
 ```
 
-The next two variants are mainly used by our debug macros as described in [Using Debug Mode][#Using Debug Mode]. Being so, the preferred usage should be via those macros.
+The next two variants are mainly used by our debug macros as described in [Using Debug Mode][#using-debug-mode]. Being so, the preferred usage should be via those macros.
 
 Various preprocessor definitions control the output of these methods. You can find and adjust them in `BMArduino.h`.
 
@@ -315,7 +315,7 @@ Example output is as follows.
 ########################################
 ```
 
-The chip is identified in `BMBoards.h` if possible. the portion that reads "23p avail" refers to the number of pins allocated for [`pin_activate()`](#`pin_activate%28%29`) to use. If I know the amount for a given chip, I'll be putting it in. Otherwise the amount is `BM_MAX_PINS` (`96`).
+The chip is identified in `BMBoards.h` if possible. the portion that reads "23p avail" refers to the number of pins allocated for [`pin_activate()`](#pin_activate) to use. If I know the amount for a given chip, I'll be putting it in. Otherwise the amount is `BM_MAX_PINS` (`96`).
 
 If debug mode is disabled, this method will produce no output.
 
