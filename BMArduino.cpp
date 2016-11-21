@@ -3,8 +3,10 @@
 #include "BMBoards.h"
 
 BMCore::BMCore() {
-  strcpy(bmFuncAnnouncePrefix, BM_FUNC_ANNOUNCE_PREFIX);
-  strcpy(bmFuncAnnounceSuffix, BM_FUNC_ANNOUNCE_SUFFIX);
+  strcpy(bmFuncAnnounceMsPrefix, BM_ANNOUNCE_MS_PREFIX);
+  strcpy(bmFuncAnnounceMsSuffix, BM_ANNOUNCE_MS_SUFFIX);
+  strcpy(bmFuncAnnouncePrefix, BM_ANNOUNCE_PREFIX);
+  strcpy(bmFuncAnnounceSuffix, BM_ANNOUNCE_SUFFIX);
   bmSerialRate = BM_SERIAL_RATE;
   bmSerialTimeout = BM_SERIAL_TIMEOUT;
   bmStartedSerial = false;
@@ -15,16 +17,18 @@ char bmInstanceName[BM_CLASS_NAME_SIZE] = "BM";
 void BMCore::announce() {
   #ifdef BM_DEBUGGING
     Serial.print(bmFuncAnnouncePrefix);
+    Serial.print(bmFuncAnnounceMsPrefix);
     Serial.print(millis());
-    Serial.print(bmFuncAnnounceSuffix);
+    Serial.print(bmFuncAnnounceMsSuffix);
   #endif
 }
 
 void BMCore::announce(char *funcName) {
   #ifdef BM_DEBUGGING
     Serial.print(bmFuncAnnouncePrefix);
+    Serial.print(bmFuncAnnounceMsPrefix);
     Serial.print(millis());
-    Serial.print("ms # ");
+    Serial.print(bmFuncAnnounceMsSuffix);
     Serial.print(funcName);
     Serial.print("()");
     Serial.print(bmFuncAnnounceSuffix);
@@ -34,8 +38,9 @@ void BMCore::announce(char *funcName) {
 void BMCore::announce(char *className, char *funcName) {
   #ifdef BM_DEBUGGING
     Serial.print(bmFuncAnnouncePrefix);
+    Serial.print(bmFuncAnnounceMsPrefix);
     Serial.print(millis());
-    Serial.print("ms # ");
+    Serial.print(bmFuncAnnounceMsSuffix);
     Serial.print(className);
     Serial.print("::");
     Serial.print(funcName);

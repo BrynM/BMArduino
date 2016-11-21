@@ -1,30 +1,71 @@
 // bpm_utils.h
-#ifndef __BMArduino__
-#define __BMArduino__
+#ifndef __BMArduino_h__
+#define __BMArduino_h__
+
+  /*
+   * These can be uncommented and adjusted.
+   * Note that prefixes and suffixes have limited length.
+   * The values here were left as the defaults for use as examples.
+   */
+
+  //#define BM_DEBUG_LEVEL 1
+
+  //#define BM_ANNOUNCE_SUFFIX_PREFIX_SIZE 8
+
+  //#define BM_ANNOUNCE_MS_PREFIX "@"
+
+  //#define BM_ANNOUNCE_MS_SUFFIX "ms # "
+
+  //#define BM_ANNOUNCE_PREFIX ""
+
+  //#define BM_ANNOUNCE_SUFFIX " # "
+
+  //#define BM_SERIAL_RATE 9600
+
+  //#define BM_SERIAL_TIMEOUT 3500
+
+#endif
+
+/*
+ * Don't edit below here
+ */
+
+#ifndef __BMArduino_h_BMCore__
+#define __BMArduino_h_BMCore__
 
   #include "BMBoards.h"
 
-  #define BM_CLASS_NAME_SIZE 36
+  #ifndef BM_ANNOUNCE_MS_PREFIX
+    #define BM_ANNOUNCE_MS_PREFIX "@"
+  #endif
 
-  #ifndef BM_MAX_PINS
-    // could be defined by BMBoards
-    #define BM_MAX_PINS 96
+  #ifndef BM_ANNOUNCE_MS_SUFFIX
+    #define BM_ANNOUNCE_MS_SUFFIX "ms # "
+  #endif
+
+  #ifndef BM_ANNOUNCE_PREFIX
+    #define BM_ANNOUNCE_PREFIX ""
+  #endif
+
+  #ifndef BM_ANNOUNCE_SUFFIX
+    #define BM_ANNOUNCE_SUFFIX " # "
+  #endif
+
+  #ifndef BM_ANNOUNCE_SUFFIX_PREFIX_SIZE
+    #define BM_ANNOUNCE_SUFFIX_PREFIX_SIZE 8
+  #endif
+
+  #ifndef BM_CLASS_NAME_SIZE
+    #define BM_CLASS_NAME_SIZE 36
   #endif
 
   #ifndef BM_DEBUG_LEVEL
     #define BM_DEBUG_LEVEL 1
   #endif
 
-  #ifndef BM_FUNC_ANNOUNCE_PREFIX_SUFFIX_SIZE
-    #define BM_FUNC_ANNOUNCE_PREFIX_SUFFIX_SIZE 8
-  #endif
-
-  #ifndef BM_FUNC_ANNOUNCE_PREFIX
-    #define BM_FUNC_ANNOUNCE_PREFIX "@"
-  #endif
-
-  #ifndef BM_FUNC_ANNOUNCE_SUFFIX
-    #define BM_FUNC_ANNOUNCE_SUFFIX " # "
+  #ifndef BM_MAX_PINS
+    // could be defined by BMBoards
+    #define BM_MAX_PINS 96
   #endif
 
   #ifndef BM_SERIAL_RATE
@@ -38,8 +79,10 @@
   class BMCore {
     protected:
       int bmUsedPins[BM_MAX_PINS];
-      char bmFuncAnnouncePrefix[BM_FUNC_ANNOUNCE_PREFIX_SUFFIX_SIZE];
-      char bmFuncAnnounceSuffix[BM_FUNC_ANNOUNCE_PREFIX_SUFFIX_SIZE];
+      char bmFuncAnnounceMsPrefix[BM_ANNOUNCE_SUFFIX_PREFIX_SIZE];
+      char bmFuncAnnounceMsSuffix[BM_ANNOUNCE_SUFFIX_PREFIX_SIZE];
+      char bmFuncAnnouncePrefix[BM_ANNOUNCE_SUFFIX_PREFIX_SIZE];
+      char bmFuncAnnounceSuffix[BM_ANNOUNCE_SUFFIX_PREFIX_SIZE];
       int bmSerialRate;
       int bmSerialTimeout;
       bool bmStartedSerial;
@@ -72,10 +115,12 @@
       (void)0 \
     )
 
-  #if defined (BM_DEBUG_LEVEL) && BM_DEBUG_LEVEL > 1
-    #define BM_DEBUGGING 1
-    #define BM_NOISY_DEBUGGING 1
-  #elif defined (BM_DEBUG_LEVEL) && BM_DEBUG_LEVEL > 0
-    #define BM_DEBUGGING 1
+  #if defined (BM_DEBUG_LEVEL) 
+    #if BM_DEBUG_LEVEL > 1
+      #define BM_DEBUGGING
+      #define BM_NOISY_DEBUGGING
+    #elif BM_DEBUG_LEVEL > 0
+      #define BM_DEBUGGING
+    #endif
   #endif
 #endif
