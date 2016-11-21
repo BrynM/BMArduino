@@ -492,7 +492,7 @@ The above code will produce something like the following output.
 
 ### `wait_for_serial()`
 
-Wait for either the hardware `Serial` interface to be ready proceed with execution after an elapsed preprocessor set timeout (`BM_SERIAL_TIMEOUT`). This method can optionally also run `Serial.begin()` using a preprocessor set baud rate (`BM_SERIAL_RATE`).
+Wait for either the hardware `Serial` interface to be ready or proceed with execution after an elapsed preprocessor set timeout (`BM_SERIAL_TIMEOUT`). This method can optionally also run `Serial.begin()` using a preprocessor set baud rate (`BM_SERIAL_RATE`).
 
 The short of it is I got sick of `while(!Serial)` syntax copy/pasting.
 
