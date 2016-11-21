@@ -22,7 +22,7 @@ My small utility Arduino library.
 
 ## Description
 
-This will create an object called `BM` containing some utility methods and basic debug output functionality. It also features some board identification functionality (by chip) available in the constant `__BM_BOARD__`.
+This will create an object called `BM` containing some utility methods and basic debug output functionality. It also features some board identification functionality (by chip) available in the preprocessor directive `__BM_BOARD__`.
 
 Released under [GPLv3](/LICENSE) so you can have your fun too.
 
