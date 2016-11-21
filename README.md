@@ -140,9 +140,8 @@ void my_clever_function() {
     FUNC_MSG();
     // Let's print the output of a variable.
     Serial.print("The value of myCleverString is: ");
-    Serial.print(myCleverString);
     // note sending the newline
-    Serial.println(" Ran the function!");
+    Serial.println(myCleverString);
   #endif
 }
 ```
@@ -151,7 +150,7 @@ The above code will produce something like the following output.
 
 ```
 @0ms # BM::wait_for_serial() # Hardware Serial begun at 9600 baud.
-@6ms # my_clever_function() # Hi! Ran the function!
+@6ms # my_clever_function() # The value of myCleverString is: Hi!
 ```
 
 Underneath, `FUNC_MSG()` is utilising the built in `__func__` preprocessor directive to hand to `BM.announce()`. It is the exact equivalent of calling `BM.announce(__func__);`
