@@ -24,6 +24,8 @@ My small utility Arduino library.
 
 This will create an object called `BM` containing some utility methods and basic debug output functionality. It also features some board identification functionality (by chip) available in the constant `__BM_BOARD__`.
 
+Released under [GPLv3](/BrynM/BMArduino/blob/master/LICENSE) so you can have your fun too.
+
 ## Installation
 
 Either clone this repository to your libraries folder or download the Zip of the repository and add it using your IDE. If you clone the repository, you will find the library in the Arduino IDE under `Sketch`->`Include Library`->`BMArduino`.
