@@ -1,3 +1,6 @@
+# Sublime Text
+*.sublime_project
+
 # Compiled Object files
 *.slo
 *.lo

@@ -1,2 +1,3 @@
-# bpm_arduino_utils
+# BMArduino
+
 My small util Arduino library
