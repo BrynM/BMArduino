@@ -10,7 +10,7 @@
     + [A Note on Compiled Size](#a-note-on-compiled-size)
   * [Utility Methods](#utility-methods)
     + [`announce()`](#announce)
-  * [`info()`](#info)
+    + [`info()`](#info)
     + [`pin_activate()`](#pin_activate)
     + [`value_is_between()`](#value_is_between_)
     + [`value_is_near()`](#value_is_near)
