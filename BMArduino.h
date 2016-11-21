@@ -121,7 +121,7 @@
       (void)0 \
     )
 
-  #if defined (BM_DEBUG_LEVEL) 
+  #ifdef BM_DEBUG_LEVEL
     #if BM_DEBUG_LEVEL > 1
       #define BM_DEBUGGING
       #define BM_NOISY_DEBUGGING
