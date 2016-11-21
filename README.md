@@ -1,3 +1,21 @@
+- [BMArduino](#bmarduino)
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Controlling Debug Mode](#controlling-debug-mode)
+    + [Debug Level 2](#debug-level-2)
+  * [Using Debug Mode](#using-debug-mode)
+    + [`BM_DEBUGGING` or `BM_NOISY_DEBUGGING`](#bm_debugging-or-bm_noisy_debugging)
+    + [`FUNC_MSG()`](#func_msg)
+    + [`CLASS_MSG()`](#class_msg)
+    + [A Note on Compiled Size](#a-note-on-compiled-size)
+  * [Utility Methods](#utility-methods)
+    + [`announce()`](#announce)
+  * [`info()`](#info)
+    + [`pin_activate()`](#pin_activate)
+    + [`value_is_between()`](#value_is_between_)
+    + [`value_is_near()`](#value_is_near)
+    + [`wait_for_serial()`](#wait_for_serial)
+
 # BMArduino
 
 My small utility Arduino library.
