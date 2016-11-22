@@ -146,7 +146,7 @@ void BMCore::wait_for_serial() {
         Serial.print(bmSerialRate);
         Serial.println(" baud.");
       } else {
-        Serial.print("begun.");
+        Serial.println("begun.");
       }
     }
   #endif
