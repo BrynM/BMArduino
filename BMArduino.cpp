@@ -30,7 +30,7 @@ void BMCore::announce(char *funcName) {
     Serial.print(millis());
     Serial.print(bmFuncAnnounceMsSuffix);
     Serial.print(funcName);
-    Serial.print("()");
+    Serial.print(F("()"));
     Serial.print(bmFuncAnnounceSuffix);
   #endif
 }
@@ -42,9 +42,9 @@ void BMCore::announce(char *className, char *funcName) {
     Serial.print(millis());
     Serial.print(bmFuncAnnounceMsSuffix);
     Serial.print(className);
-    Serial.print("::");
+    Serial.print(F("::"));
     Serial.print(funcName);
-    Serial.print("()");
+    Serial.print(F("()"));
     Serial.print(bmFuncAnnounceSuffix);
   #endif
 }
@@ -52,23 +52,23 @@ void BMCore::announce(char *className, char *funcName) {
 
 void BMCore::info() {
   #ifdef BM_DEBUGGING
-    Serial.print("########################################\n");
-    Serial.print("# Compiled for ");
+    Serial.print(F("########################################\n"));
+    Serial.print(F("# Compiled for "));
     Serial.print(__BM_BOARD__);
-    Serial.print(" (");
+    Serial.print(F(" ("));
     Serial.print(BM_MAX_PINS);
-    Serial.println("p avail)");
-    Serial.print("# ");
+    Serial.println(F("p avail)"));
+    Serial.print(F("# "));
     Serial.print(__DATE__);
-    Serial.print(" ");
+    Serial.print(F(" "));
     Serial.print(__TIME__);
     Serial.println();
-    Serial.print("# libc ");
+    Serial.print(F("# libc "));
     Serial.print(__AVR_LIBC_DATE_STRING__);
-    Serial.print(" ");
+    Serial.print(F(" "));
     Serial.print(__AVR_LIBC_VERSION_STRING__);
     Serial.println();
-    Serial.print("########################################\n\n");
+    Serial.print(F("########################################\n\n"));
   #endif
 }
 
@@ -84,9 +84,9 @@ bool BMCore::pin_activate(int pin, int ioMode) {
     if(bmUsedPins[i] == pin) {
       #ifdef BM_DEBUGGING
         CLASS_MSG(bmInstanceName);
-        Serial.print("Failed pin ");
+        Serial.print(F("Failed pin "));
         Serial.print(pin);
-        Serial.print(" slot ");
+        Serial.print(F(" slot "));
         Serial.println(i);
       #endif
 
@@ -99,13 +99,13 @@ bool BMCore::pin_activate(int pin, int ioMode) {
 
   #ifdef BM_DEBUGGING
     CLASS_MSG(bmInstanceName);
-    Serial.print("Reserved pin ");
+    Serial.print(F("Reserved pin "));
     Serial.print(pin);
-    Serial.print(" slot ");
+    Serial.print(F(" slot "));
     Serial.print(lastIter);
-    Serial.print(" (");
+    Serial.print(F(" ("));
     Serial.print(BM_MAX_PINS - (lastIter + 1));
-    Serial.println(" remain)");
+    Serial.println(F(" remain)"));
   #endif
 
   return true;
@@ -135,18 +135,18 @@ void BMCore::wait_for_serial() {
   #ifdef BM_DEBUGGING
     Serial.println();
     CLASS_MSG(bmInstanceName);
-    Serial.print("Hardware Serial ");
+    Serial.print(F("Hardware Serial "));
     if(serialBreak) {
-      Serial.print("timed out after ");
+      Serial.print(F("timed out after "));
       Serial.print(bmSerialTimeout);
-      Serial.println("!");
+      Serial.println(F("!"));
     } else {
       if(bmStartedSerial) {
-        Serial.print("begun at ");
+        Serial.print(F("begun at "));
         Serial.print(bmSerialRate);
-        Serial.println(" baud.");
+        Serial.println(F(" baud."));
       } else {
-        Serial.println("begun.");
+        Serial.println(F("begun."));
       }
     }
   #endif
