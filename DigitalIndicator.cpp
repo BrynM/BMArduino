@@ -1,52 +1,28 @@
 #include "Arduino.h"
 #include <BMArduino.h>
-#include "Indicator.h"
+#include "DigitalIndicator.h"
 
-/*
-  class Indicator {
-    uint8_t digitalPin;
-    bool isLit;
-    int instanceIndex;
-    char instanceName[BM_CLASS_NAME_SIZE];
-    bool pinActive;
+int digitalIndicatorCount = 0;
+char defaultDigitalIndicatorName[] = "DigitalIndicator-";
 
-    void generate_instance_name(char *intoVar);
-    bool init(char *aName, int pin, double knownVal);
-
-    public:
-      Indicator::Indicator();
-      Indicator::Indicator(uint8_t newDigitalPin);
-      void begin();
-      void begin(char *aName);
-      void begin(char *aName, uint8_t pin);
-      bool is_lit();
-      bool is_lit(bool newStatus);
-      bool set_name(char *aName);
-      bool set_digital_pin(int newDigitalPin);
-  };
-*/
-
-int indicatorCount = 0;
-char defaultIndicatorName[] = "Indicator-";
-
-Indicator::Indicator() {
-  init("", INDICATOR_DEFAULT_PIN);
+DigitalIndicator::DigitalIndicator() {
+  init("", DIGITALINDICATOR_DEFAULT_PIN);
 }
-Indicator::Indicator(char *aName) {
-  init(aName, INDICATOR_DEFAULT_PIN);
+DigitalIndicator::DigitalIndicator(char *aName) {
+  init(aName, DIGITALINDICATOR_DEFAULT_PIN);
 }
-Indicator::Indicator(char *aName, int pin) {
+DigitalIndicator::DigitalIndicator(char *aName, int pin) {
   init(aName, pin);
 }
-void Indicator::generate_instance_name(char *intoVar) {
+void DigitalIndicator::generate_instance_name(char *intoVar) {
   char buffer[10];
   itoa(instanceIndex, buffer, 10);
-  strcpy(intoVar, defaultIndicatorName);
+  strcpy(intoVar, defaultDigitalIndicatorName);
   strcat(intoVar, buffer);
 }
-bool Indicator::init(char *aName, int pin) {
-  instanceIndex = indicatorCount;
-  indicatorCount++;
+bool DigitalIndicator::init(char *aName, int pin) {
+  instanceIndex = digitalIndicatorCount;
+  digitalIndicatorCount++;
 
   if(!set_name(aName)) {
     generate_instance_name(instanceName);
@@ -57,7 +33,7 @@ bool Indicator::init(char *aName, int pin) {
   isLit = false;
 }
 
-bool Indicator::activate_pin() {
+bool DigitalIndicator::activate_pin() {
   if(pinActive) {
     #ifdef BM_DEBUGGING
       CLASS_MSG(instanceName);
@@ -91,23 +67,23 @@ bool Indicator::activate_pin() {
   return false;
 }
 
-void Indicator::begin() {
+void DigitalIndicator::begin() {
   activate_pin();
 }
-void Indicator::begin(char *aName) {
+void DigitalIndicator::begin(char *aName) {
   set_name(aName);
   begin();
 }
-void Indicator::begin(char *aName, int pin) {
+void DigitalIndicator::begin(char *aName, int pin) {
   set_name(aName);
   set_digital_pin(pin);
   begin();
 }
 
-bool Indicator::is_lit() {
+bool DigitalIndicator::is_lit() {
   return isLit;
 }
-bool Indicator::is_lit(bool newStatus) {
+bool DigitalIndicator::is_lit(bool newStatus) {
   if(newStatus) {
     digitalWrite(digitalPin, HIGH);
     isLit = true;
@@ -119,7 +95,7 @@ bool Indicator::is_lit(bool newStatus) {
   return isLit;
 }
 
-bool Indicator::set_digital_pin(int newDigitalPin) {
+bool DigitalIndicator::set_digital_pin(int newDigitalPin) {
   if(newDigitalPin > -1) {
     if(newDigitalPin == digitalPin) {
       #ifdef BM_DEBUGGING
@@ -143,9 +119,9 @@ bool Indicator::set_digital_pin(int newDigitalPin) {
     return true;
   } 
 
-  digitalPin = INDICATOR_DEFAULT_PIN;
+  digitalPin = DIGITALINDICATOR_DEFAULT_PIN;
 
-  if(newDigitalPin == INDICATOR_DEFAULT_PIN) {
+  if(newDigitalPin == DIGITALINDICATOR_DEFAULT_PIN) {
     // desired an emptying of the pin
     return true;
   }
@@ -153,7 +129,7 @@ bool Indicator::set_digital_pin(int newDigitalPin) {
   return false;
 }
 
-bool Indicator::set_name(char *aName) {
+bool DigitalIndicator::set_name(char *aName) {
   if(strlen(aName) != 0) {
     #ifdef BM_DEBUGGING
       CLASS_MSG(instanceName);

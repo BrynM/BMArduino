@@ -1,14 +1,14 @@
-// Indicator.h
-#ifndef __Indicator_h__
-#define __Indicator_h__
+// DigitalIndicator.h
+#ifndef __DigitalIndicator_h__
+#define __DigitalIndicator_h__
 
   /*
-   * Indicator
+   * DigitalIndicator
    */
 
-  #define INDICATOR_DEFAULT_PIN -1
+  #define DIGITALINDICATOR_DEFAULT_PIN -1
 
-  class Indicator {
+  class DigitalIndicator {
     int digitalPin;
     bool isLit;
     int instanceIndex;
@@ -19,9 +19,9 @@
     bool init(char *aName, int pin);
 
     public:
-      Indicator::Indicator();
-      Indicator::Indicator(char *aName);
-      Indicator::Indicator(char *aName, int newDigitalPin);
+      DigitalIndicator::DigitalIndicator();
+      DigitalIndicator::DigitalIndicator(char *aName);
+      DigitalIndicator::DigitalIndicator(char *aName, int newDigitalPin);
       bool activate_pin();
       void begin();
       void begin(char *aName);
