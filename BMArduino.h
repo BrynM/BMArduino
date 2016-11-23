@@ -35,7 +35,7 @@
 #ifndef __BMArduino_h_BMCore__
 #define __BMArduino_h_BMCore__
 
-  #include "BMBoards.h"
+  #include "lib/BMBoards.h"
 
   #ifndef BM_ANNOUNCE_MS_PREFIX
     #define BM_ANNOUNCE_MS_PREFIX "@"
