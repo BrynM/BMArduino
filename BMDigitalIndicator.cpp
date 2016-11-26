@@ -1,26 +1,26 @@
 #include "Arduino.h"
 #include <BMArduino.h>
-#include "DigitalIndicator.h"
+#include "BMDigitalIndicator.h"
 
 int digitalIndicatorCount = 0;
-char defaultDigitalIndicatorName[] = "DigitalIndicator-";
+char defaultDigitalIndicatorName[] = "BMDigitalIndicator-";
 
-DigitalIndicator::DigitalIndicator() {
+BMDigitalIndicator::BMDigitalIndicator() {
   init("", DIGITALINDICATOR_DEFAULT_PIN);
 }
-DigitalIndicator::DigitalIndicator(char *aName) {
+BMDigitalIndicator::BMDigitalIndicator(char *aName) {
   init(aName, DIGITALINDICATOR_DEFAULT_PIN);
 }
-DigitalIndicator::DigitalIndicator(char *aName, int pin) {
+BMDigitalIndicator::BMDigitalIndicator(char *aName, int pin) {
   init(aName, pin);
 }
-void DigitalIndicator::generate_instance_name(char *intoVar) {
+void BMDigitalIndicator::generate_instance_name(char *intoVar) {
   char buffer[10];
   itoa(instanceIndex, buffer, 10);
   strcpy(intoVar, defaultDigitalIndicatorName);
   strcat(intoVar, buffer);
 }
-bool DigitalIndicator::init(char *aName, int pin) {
+bool BMDigitalIndicator::init(char *aName, int pin) {
   instanceIndex = digitalIndicatorCount;
   digitalIndicatorCount++;
 
@@ -33,7 +33,7 @@ bool DigitalIndicator::init(char *aName, int pin) {
   isLit = false;
 }
 
-bool DigitalIndicator::activate_pin() {
+bool BMDigitalIndicator::activate_pin() {
   if(pinActive) {
     #ifdef BM_DEBUGGING
       CLASS_MSG(instanceName);
@@ -67,23 +67,23 @@ bool DigitalIndicator::activate_pin() {
   return false;
 }
 
-void DigitalIndicator::begin() {
+void BMDigitalIndicator::begin() {
   activate_pin();
 }
-void DigitalIndicator::begin(char *aName) {
+void BMDigitalIndicator::begin(char *aName) {
   set_name(aName);
   begin();
 }
-void DigitalIndicator::begin(char *aName, int pin) {
+void BMDigitalIndicator::begin(char *aName, int pin) {
   set_name(aName);
   set_digital_pin(pin);
   begin();
 }
 
-bool DigitalIndicator::is_lit() {
+bool BMDigitalIndicator::is_lit() {
   return isLit;
 }
-bool DigitalIndicator::is_lit(bool newStatus) {
+bool BMDigitalIndicator::is_lit(bool newStatus) {
   if(newStatus) {
     digitalWrite(digitalPin, HIGH);
     isLit = true;
@@ -95,7 +95,7 @@ bool DigitalIndicator::is_lit(bool newStatus) {
   return isLit;
 }
 
-bool DigitalIndicator::set_digital_pin(int newDigitalPin) {
+bool BMDigitalIndicator::set_digital_pin(int newDigitalPin) {
   if(newDigitalPin > -1) {
     if(newDigitalPin == digitalPin) {
       #ifdef BM_DEBUGGING
@@ -129,7 +129,7 @@ bool DigitalIndicator::set_digital_pin(int newDigitalPin) {
   return false;
 }
 
-bool DigitalIndicator::set_name(char *aName) {
+bool BMDigitalIndicator::set_name(char *aName) {
   if(strlen(aName) != 0) {
     #ifdef BM_DEBUGGING
       CLASS_MSG(instanceName);
