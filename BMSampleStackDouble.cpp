@@ -1,14 +1,14 @@
-#include "SampleStack.h"
+#include "BMSampleStackDouble.h"
 
 /*
- * SampleStack
+ * BMSampleStackDouble
  */
 
-SampleStack::SampleStack() {
+BMSampleStackDouble::BMSampleStackDouble() {
   empty();
 }
 
-double SampleStack::average() {
+double BMSampleStackDouble::average() {
   if(sampleCount == 0) {
     return 0;
   }
@@ -28,11 +28,11 @@ double SampleStack::average() {
   return total / sampleCount;
 }
 
-int SampleStack::count() {
+int BMSampleStackDouble::count() {
   return sampleCount;
 }
 
-void SampleStack::empty() {
+void BMSampleStackDouble::empty() {
   sampleCount = 0;
 
   // fill with -1
@@ -41,20 +41,23 @@ void SampleStack::empty() {
   }
 }
 
-int SampleStack::push(double pushedVal) {
+int BMSampleStackDouble::push(double pushedVal) {
   int lastIndex = sampleCount - 1;
   
+  if(SAMPLESTACK_RESET_ON_EMPTY > 0) {
+    // @TODO make this count and use the above setting
+    if((pushedVal < 1) && (stack[lastIndex] < 1) && (stack[lastIndex - 1] < 1) && (stack[lastIndex - 2] < 1)) {
+      // four 0s in a row mean empty.
+      empty();
+      return 0;
+    }
+  }
+
   if(sampleCount < (SAMPLESTACK_MAXIMUM - 1)) {
     stack[sampleCount] = pushedVal;
     sampleCount++;
 
     return sampleCount - 1;
-  }
-
-  if((pushedVal < 1) && (stack[lastIndex] < 1) && (stack[lastIndex - 1] < 1) && (stack[lastIndex - 2] < 1)) {
-    // four 0s in a row mean empty.
-    empty();
-    return 0;
   }
 
   for(int i = 0; i < sampleCount; i++) {
