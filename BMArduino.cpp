@@ -1,6 +1,6 @@
 #include "Arduino.h"
 #include "BMArduino.h"
-#include "BMBoards.h"
+#include "lib/BMBoards.h"
 
 BMCore::BMCore() {
   strcpy(bmFuncAnnounceMsPrefix, BM_ANNOUNCE_MS_PREFIX);

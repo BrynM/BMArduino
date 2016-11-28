@@ -1,4 +1,4 @@
-// bpm_utils.h
+// BMArduino.h
 #ifndef __BMArduino_h__
 #define __BMArduino_h__
 
@@ -35,7 +35,7 @@
 #ifndef __BMArduino_h_BMCore__
 #define __BMArduino_h_BMCore__
 
-  #include "BMBoards.h"
+  #include "lib/BMBoards.h"
 
   #ifndef BM_ANNOUNCE_MS_PREFIX
     #define BM_ANNOUNCE_MS_PREFIX "@"
@@ -122,7 +122,11 @@
     )
 
   #ifdef BM_DEBUG_LEVEL
-    #if BM_DEBUG_LEVEL > 1
+    #if BM_DEBUG_LEVEL > 2
+      #define BM_DEBUGGING
+      #define BM_NOISY_DEBUGGING
+      #define BM_VERY_NOISY_DEBUGGING
+    #elif BM_DEBUG_LEVEL > 1
       #define BM_DEBUGGING
       #define BM_NOISY_DEBUGGING
     #elif BM_DEBUG_LEVEL > 0
