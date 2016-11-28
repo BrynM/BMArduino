@@ -23,7 +23,7 @@
   // index of the startup mode
   #define BMPARALLAX3WIRE_MODE_DEFAULT 3
 
-  #define BMPARALLAX3WIRE_NOTE_CHAR_SIZE 2
+  #define BMPARALLAX3WIRE_NOTE_CHAR_SIZE 4
   #define BMPARALLAX3WIRE_NOTE_COUNT 13
   #define BMPARALLAX3WIRE_NOTE_FIRST_INDEX 220
 
@@ -69,7 +69,7 @@
     bool backlightLit;
 
     int find_beat_index(int noteLength);
-    int find_note_index(int note);
+    int find_note_index(char *note);
     int find_scale_index(int scale);
 
     public:

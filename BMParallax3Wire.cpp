@@ -31,9 +31,9 @@ char bmParallax3WireValidNotes[BMPARALLAX3WIRE_NOTE_COUNT][BMPARALLAX3WIRE_NOTE_
   "F#",
   "G",
   "G#",
-  // empty for rest/silent beat duration
   ""
 };
+
 
 // for the musical functionality - note length control
 #define BMPARALLAX3WIRE_BEAT_FIRST_INDEX 208
@@ -127,7 +127,7 @@ int BMParallax3Wire::find_beat_index(int noteLength) {
   return -1;
 }
 
-int BMParallax3Wire::find_note_index(int note) {
+int BMParallax3Wire::find_note_index(char *note) {
   for(int i = 0; i < BMPARALLAX3WIRE_NOTE_COUNT; i++) {
     if(strcmp(bmParallax3WireValidNotes[i], note) == 0) {
       return i;
@@ -258,28 +258,15 @@ void BMParallax3Wire::play_note(char *note, int scale) {
     return;
   }
 
+  #ifdef BM_DEBUGGING
+    CLASS_MSG(bmParallax3WireClassName);
+    Serial.print(F("Playing note "));
+    Serial.print(note);
+    Serial.println(scale);
+  #endif
+
   write(BMPARALLAX3WIRE_SCALE_FIRST_INDEX+scaleIndex);
   write(BMPARALLAX3WIRE_NOTE_FIRST_INDEX+noteIndex);
-/*
-215 D7 Select the 3rd scale (A = 220 Hz)
-216 D8 Select the 4th scale (A = 440 Hz)
-217 D9 Select the 5th scale (A = 880 Hz)
-218 DA Select the 6th scale (A = 1760 Hz)
-219 DB Select the 7th scale (A = 3520 Hz)
-220 DC Play A note
-221 DD Play A# note
-222 DE Play B
-223 DF Play C
-224 E0 Play C#
-225 E1 Play D
-226 E2 Play D#
-227 E3 Play E
-228 E4 Play F
-229 E5 Play F#
-230 E6 Play G
-231 E7 Play G#
-232 E8 Pause for current note length (no sound) 
-*/  
 }
 
 // set the length of a note 1 for whole, 2 for half, 4 for quarter, etc. 
