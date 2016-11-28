@@ -23,6 +23,22 @@
   // index of the startup mode
   #define BMPARALLAX3WIRE_MODE_DEFAULT 3
 
+  /*
+  // Music Example
+  // The lcd is monophonic, so what you send will get
+  // played in sequence no matter how fast you send it.
+  lcdDisplay.set_beat(1); // whole note
+  lcdDisplay.play_note("E", 3);
+  lcdDisplay.set_beat(4); // quarter note
+  lcdDisplay.play_note("G");
+  lcdDisplay.set_beat(8); // eighth note
+  lcdDisplay.play_note("B");
+  lcdDisplay.play_note(""); // rest
+  lcdDisplay.play_note("G");
+  lcdDisplay.play_note("B");
+  lcdDisplay.set_beat(4); // quarter note
+  lcdDisplay.play_note("E");
+  */
   #define BMPARALLAX3WIRE_NOTE_CHAR_SIZE 4
   #define BMPARALLAX3WIRE_NOTE_COUNT 13
   #define BMPARALLAX3WIRE_NOTE_FIRST_INDEX 220
@@ -36,26 +52,26 @@
 
   // some human-readable labels for the
   // regular custom character indexes
-  #define PLX_CHAR_A 0
-  #define PLX_CHAR_B 1
-  #define PLX_CHAR_C 2
-  #define PLX_CHAR_D 3
-  #define PLX_CHAR_E 4
-  #define PLX_CHAR_F 5
-  #define PLX_CHAR_G 6
-  #define PLX_CHAR_H 7
+  #define PLX_CHAR_A 0x00
+  #define PLX_CHAR_B 0x01
+  #define PLX_CHAR_C 0x02
+  #define PLX_CHAR_D 0x03
+  #define PLX_CHAR_E 0x04
+  #define PLX_CHAR_F 0x05
+  #define PLX_CHAR_G 0x06
+  #define PLX_CHAR_H 0x07
 
   // some human-readable labels for the
   // arrow custom character indexes
   // must use load_arrows() first
-  #define PLX_ARROW_UP    0
-  #define PLX_ARROW_DOWN  1
-  #define PLX_ARROW_LEFT  2
-  #define PLX_ARROW_RIGHT 3
-  #define PLX_ARROW_NEG_UP    4
-  #define PLX_ARROW_NEG_DOWN  5
-  #define PLX_ARROW_NEG_LEFT  6
-  #define PLX_ARROW_NEG_RIGHT 7
+  #define PLX_ARROW_UP        0x00
+  #define PLX_ARROW_DOWN      0x01
+  #define PLX_ARROW_LEFT      0x02
+  #define PLX_ARROW_RIGHT     0x03
+  #define PLX_ARROW_NEG_UP    0x04
+  #define PLX_ARROW_NEG_DOWN  0x05
+  #define PLX_ARROW_NEG_LEFT  0x06
+  #define PLX_ARROW_NEG_RIGHT 0x07
 
   struct modeFlags {
     char designation[4];
