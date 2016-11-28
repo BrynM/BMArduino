@@ -105,7 +105,7 @@ bool BMParallax3Wire::backlight(int setLight) {
 
 void BMParallax3Wire::clear() {
   write(BMPARALLAX3WIRE_CMD_CLEAR);
-  #ifdef BM_NOISY_DEBUGGING
+  #ifdef BM_VERY_NOISY_DEBUGGING
     CLASS_MSG(bmParallax3WireClassName);
     Serial.println(F("Clear."));
     CLASS_MSG(bmParallax3WireClassName);
@@ -303,7 +303,7 @@ bool BMParallax3Wire::set_cursor(int row, int col) {
 
   int offset = (row * BMPARALLAX3WIRE_COORDS_MAX_COLS) + col;
   write(BMPARALLAX3WIRE_COORDS_FIRST_INDEX + offset);
-  #ifdef BM_NOISY_DEBUGGING
+  #ifdef BM_VERY_NOISY_DEBUGGING
     CLASS_MSG(bmParallax3WireClassName);
     Serial.print(F("Set cursor to "));
     Serial.print(row);

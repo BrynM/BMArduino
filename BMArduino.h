@@ -1,4 +1,4 @@
-// bpm_utils.h
+// BMArduino.h
 #ifndef __BMArduino_h__
 #define __BMArduino_h__
 
@@ -122,7 +122,11 @@
     )
 
   #ifdef BM_DEBUG_LEVEL
-    #if BM_DEBUG_LEVEL > 1
+    #if BM_DEBUG_LEVEL > 2
+      #define BM_DEBUGGING
+      #define BM_NOISY_DEBUGGING
+      #define BM_VERY_NOISY_DEBUGGING
+    #elif BM_DEBUG_LEVEL > 1
       #define BM_DEBUGGING
       #define BM_NOISY_DEBUGGING
     #elif BM_DEBUG_LEVEL > 0
